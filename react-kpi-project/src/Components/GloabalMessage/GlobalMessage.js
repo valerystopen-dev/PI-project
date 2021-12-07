@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import actions from "src/redux/actions";
 
 
-const GloabalMessage = () => {
+const GlobalMessage = () => {
     const dispatch = useDispatch();
     const message = useSelector((state) => state.app.message);
 
@@ -12,7 +12,7 @@ const GloabalMessage = () => {
         <div className="modal fade show" style={{ display: 'inline' }} tabIndex="2">
             <div className="modal-dialog border border-info" >
                 <div className="modal-content">
-                    <div className="modal-header bg-info text-white">
+                    <div className="modal-header bg-dark text-white">
                         <h5 className="modal-title">Повідомлення!</h5>
                     </div>
                     <div className="modal-body">
@@ -27,4 +27,4 @@ const GloabalMessage = () => {
     )
 };
 
-export default GloabalMessage;
+export default GlobalMessage;

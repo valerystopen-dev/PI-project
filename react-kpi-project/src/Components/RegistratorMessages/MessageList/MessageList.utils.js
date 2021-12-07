@@ -6,6 +6,7 @@ import {
 
 export const tableLabelsMap = {
   [MESSAGE_TYPE_PRIVATE_NOTARY]: {
+    status: "Статус повідомлення",
     additionalStatements: "Додаткові відомості",
     archiveName: "Назва архіву",
     area: "Район",
@@ -49,6 +50,7 @@ export const tableLabelsMap = {
     updatedMiddleName: "Нове по батькові",
   },
   [MESSAGE_TYPE_GOVERNMENT_NOTARY]: {
+    status: "Статус повідомлення",
     area: "Регіон",
     documentDate: "Дата документа",
     documentName: "Назва документа, на підставі якого вносяться зміни до Реєстру",
@@ -73,6 +75,7 @@ export const tableLabelsMap = {
     type: "Повідомлення для внесення відомостей про нотаріусів, які працюють у державних нотаріальних конторах або архівах, до Єдиного реєстру нотаріусів",
   },
   [MESSAGE_TYPE_ORGANIZATION]: {
+    status: "Статус повідомлення",
     area: "Район",
     additionalStatements: "Додаткові відомості",
     documentDate: "Дата документа",

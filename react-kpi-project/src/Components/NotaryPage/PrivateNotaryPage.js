@@ -100,6 +100,12 @@ const PrivateNotaryPage = () => {
     }
   }, [currentArea]);
 
+  React.useEffect(() => {
+    return () => {
+      localStorage.removeItem("id")
+    };
+  });
+
   useEffect(() => {
     console.log('currentNotary:', currentNotary)
     if (!!notaryId && !!Object.keys(currentNotary).length) {
@@ -149,6 +155,20 @@ const PrivateNotaryPage = () => {
     ));
   };
 
+  const getNotary = ()=>{
+    const id = localStorage.getItem("id");
+    if(id){
+      const messages = JSON.parse(localStorage.getItem("messages"))
+      for(let i=0; i<messages.length; i++){
+        if(messages[i].id===id){
+          let res = messages [i]
+          return res;
+        }
+      }
+    }
+  }
+
+
   const validateDropDown = (value) => value !== "default";
 
   return (
@@ -176,6 +196,7 @@ const PrivateNotaryPage = () => {
                       type="text"
                       className="form-control"
                       placeholder="Прізвище"
+                      value={getNotary()&&getNotary().lastName}
                       {...register("lastName", { required: true })}
                       //ref={lastName}
                     />
@@ -193,6 +214,7 @@ const PrivateNotaryPage = () => {
                       type="text"
                       className="form-control"
                       placeholder="Ім'я"
+                      value={getNotary()&&getNotary().firstName}
                       {...register("firstName", { required: true })}
                       //ref={firstName}
                     />
@@ -210,6 +232,7 @@ const PrivateNotaryPage = () => {
                       type="text"
                       className="form-control"
                       placeholder="По батькові"
+                      value={getNotary()&&getNotary().middleName}
                       {...register("middleName", { required: true })}
                       //ref={middleName}
                     />
@@ -226,6 +249,7 @@ const PrivateNotaryPage = () => {
                       type="text"
                       className="form-control"
                       placeholder="Номер ліцензії"
+                      value={getNotary()&&getNotary().certificateNumber}
                       {...register("licenceNumber", { required: true })}
                       //ref={licenceNumber}
                     />

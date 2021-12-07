@@ -16,6 +16,7 @@ const PrivateNotaryMessage = (props) => {
       actions.createNewMessage({
         ...data,
         id: random(),
+        status: "Відправлено",
         type: MESSAGE_TYPE_PRIVATE_NOTARY,
       })
     );

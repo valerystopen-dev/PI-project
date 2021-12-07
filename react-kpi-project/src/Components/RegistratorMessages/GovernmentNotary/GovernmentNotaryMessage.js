@@ -15,6 +15,7 @@ const GovernmentNotaryMessage = (props) => {
       actions.createNewMessage({
         ...data,
         id: random(),
+        status: "Надіслано",
         type: MESSAGE_TYPE_GOVERNMENT_NOTARY,
       })
     );

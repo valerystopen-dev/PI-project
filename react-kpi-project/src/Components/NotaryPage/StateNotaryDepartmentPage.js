@@ -91,6 +91,12 @@ const StateNotaryDepartmentPage = () => {
     }
   }, [currentArea]);
 
+  React.useEffect(() => {
+    return () => {
+      localStorage.removeItem("id")
+    };
+  });
+
   useEffect(() => {
     if (!!notaryId && !!Object.keys(currentNotaryDepartment).length) {
       setValue("departmentName", currentNotaryDepartment.name || "");
@@ -123,6 +129,19 @@ const StateNotaryDepartmentPage = () => {
     ));
   };
 
+  const getNotary = ()=>{
+    const id = localStorage.getItem("id");
+    if(id){
+      const messages = JSON.parse(localStorage.getItem("messages"))
+      for(let i=0; i<messages.length; i++){
+        if(messages[i].id===id){
+          let res = messages [i]
+          return res;
+        }
+      }
+    }
+  }
+
   const validateDropDown = (value) => value !== "default";
 
 
@@ -144,6 +163,7 @@ const StateNotaryDepartmentPage = () => {
                     class="form-control"
                     id="exampleFormControlInput1"
                     placeholder="Назва закладу"
+                    value={getNotary()&&getNotary().orgName}
                     {...register("departmentName", { required: true })}
                   />
                 </div>
@@ -156,6 +176,7 @@ const StateNotaryDepartmentPage = () => {
                     type="text"
                     class="form-control"
                     id="exampleFormControlInput1"
+                    value={getNotary()&&getNotary().phoneNumber}
                     placeholder="Робочий телефон"
                     {...register("phoneNumber", { required: true })}
                   />

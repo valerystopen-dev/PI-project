@@ -25,6 +25,7 @@ import GovernmentNotaryMessage from './Components/RegistratorMessages/Government
 import PrivateNotaryMessage from './Components/RegistratorMessages/PrivateNotary/PrivateNotary';
 import OrganizationMessage from './Components/RegistratorMessages/Organization/OrganizationMessage';
 import MessageListPage from './Components/RegistratorMessages/MessageList/MessageListPage'
+import MessageList from "./Components/RegistratorMessages/MessageList";
 
 
 function App() {
@@ -106,6 +107,10 @@ function App() {
           <Route path="/organization-message">
             <OrganizationMessage />
           </Route>) : null}
+          {currentUser === REGISTRATOR ? (
+              <Route path="/my-message-list-page">
+                <MessageList />
+              </Route>) : null}
           {currentUser === ADMINISTRATOR ? (
           <Route path="/message-list-page">
             <MessageListPage />

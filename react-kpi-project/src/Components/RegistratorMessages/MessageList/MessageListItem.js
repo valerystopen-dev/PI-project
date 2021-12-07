@@ -2,7 +2,6 @@ import { tableLabelsMap } from "./MessageList.utils";
 import { hiddenDisplayKeys } from "./MessageList.utils";
 
 const MessageListItem = ({ message }) => {
-  console.log('message:', message)
   const tableKeysMap = tableLabelsMap[message.type] || {};
   const displayTable = Object.entries(message).reduce(
     (res, [messageKey, value]) => ({
@@ -14,6 +13,7 @@ const MessageListItem = ({ message }) => {
     }),
     {}
   );
+
 
   return (
     <div class="accordion-item">
@@ -50,6 +50,44 @@ const MessageListItem = ({ message }) => {
           )}
         </div>
       </div>
+        <button disabled={!(message.status==="Надіслано")}
+            type="button"
+                class="btn btn-dark w-50"
+                onClick={()=>{
+                    if(message.reason==="orgRegistration"){
+                        window.location.href='/new-state-notary-department-page'
+                    }
+                    else if(message.reason === "newPosition" || message.reason === "notaryActivityRegistration"){
+                        window.location.href='/new-private-notary-page'
+                    }
+                    localStorage.setItem("id", message.id);
+                    const messages = localStorage.getItem("messages")
+                    const obj_messages = JSON.parse(messages)
+                    for(let i =0; i<obj_messages.length; i++){
+                        if(obj_messages[i].id === message.id){
+                            obj_messages[i].status = "Виконано"
+                        }
+                    }
+                    localStorage.setItem("messages", JSON.stringify(obj_messages))}}
+        >
+            ВИКОНАТИ
+        </button>
+        <button disabled={!(message.status==="Надіслано")}
+            type="button"
+                class="btn btn-dark w-50"
+        onClick={()=> {
+            const messages = localStorage.getItem("messages")
+            const obj_messages = JSON.parse(messages)
+            for(let i =0; i<obj_messages.length; i++){
+                if(obj_messages[i].id === message.id){
+                    obj_messages[i].status = "Відхилено"
+                }
+            }
+            localStorage.setItem("messages", JSON.stringify(obj_messages))
+        }}>
+
+            ВІДХИЛИТИ
+        </button>
     </div>
   );
 };

@@ -16,6 +16,7 @@ const OrganizationMessage = (props) => {
       actions.createNewMessage({
         ...data,
         id: random(),
+        status: "Надіслано",
         type: MESSAGE_TYPE_ORGANIZATION,
       })
     );
